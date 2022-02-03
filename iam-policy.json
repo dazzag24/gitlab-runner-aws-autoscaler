@@ -21,7 +21,7 @@
             "Resource": "arn:aws:ec2::<AWS_ACCOUNT_ID>:instance/*",
             "Condition": {
                 "StringEquals": {
-                    "ec2:InstanceProfile": "arn:aws:iam::<AWS_ACCOUNT_ID>:policy/gitlab-runner-agent"
+                    "ec2:InstanceProfile": "arn:aws:iam::<AWS_ACCOUNT_ID>:instance-profile/gitlab-runner-agent"
                 }
             }
         },
