@@ -66,7 +66,7 @@
                 "s3:GetObject",
                 "s3:DeleteObject"
             ],
-            "Resource": "arn:aws:s3:::qureight-base-infrastructure-cache/*"
+            "Resource": "arn:aws:s3:::<S3_BUCKET_FOR_GITLAB_RUNNER_CACHE>/*"
         },
         {
             "Action": [
