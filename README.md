@@ -14,10 +14,10 @@ ec2 gitlat runner manager only can delete EC2 with ec2 profile `gitlab-runner-ag
                 "ec2:TerminateInstances"
             ],
             "Effect": "Allow",
-            "Resource": "arn:aws:ec2:*:(AWS-ID-XXX:instance/*",
+            "Resource": "arn:aws:ec2::<AWS_ACCOUNT_ID>:instance/*",
             "Condition": {
                 "StringEquals": {
-                    "ec2:InstanceProfile": "gitlab-runner-agent"
+                    "ec2:InstanceProfile": "arn:aws:iam::<AWS_ACCOUNT_ID>:instance-profile/gitlab-runner-agent"
                 }
             }
         },
