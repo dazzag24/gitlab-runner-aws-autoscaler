@@ -13,20 +13,30 @@
         },
         {
             "Action": [
-                "ec2:TerminateInstances"
+                "ec2:TerminateInstances",
+                "ec2:StopInstances",
+                "ec2:RebootInstances"
             ],
             "Effect": "Allow",
-            "Resource": "arn:aws:ec2:*:(AWS-ID-xxxx:instance/*",
+            "Resource": "arn:aws:ec2::<AWS_ACCOUNT_ID>:instance/*",
             "Condition": {
                 "StringEquals": {
-                    "ec2:InstanceProfile": "gitlab-runner-agent"
+                    "ec2:InstanceProfile": "arn:aws:iam::<AWS_ACCOUNT_ID>:policy/gitlab-runner-agent"
                 }
             }
         },
         {
             "Action": [
-                "ec2:*",
-                "iam:PassRole"
+                "ec2:CreateKeyPair",
+                "ec2:DeleteKeyPair",
+                "ec2:ImportKeyPair",
+                "ec2:Describe*",
+                "ec2:CreateTags",
+                "ec2:RunInstances",
+                "ec2:StartInstances",
+                "ec2:RequestSpotInstances",
+                "ec2:CancelSpotInstanceRequests",
+                "ec2:SendSpotInstanceInterruptions"
             ],
             "Effect": "Allow",
             "Resource": "*"
@@ -47,6 +57,24 @@
                     ]
                 }
             }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObjectVersion",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::qureight-base-infrastructure-cache/*"
+        },
+        {
+            "Action": [
+                "ec2:*",
+                "iam:PassRole"
+            ],
+            "Effect": "Allow",
+            "Resource": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/gitlab-runner-agent"
         }
     ]
 }
